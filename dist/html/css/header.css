@@ -1,0 +1,23 @@
+ /*清除默认样式*/
+
+*{ margin: 0; padding: 0}
+ul,li{list-style: none;}
+a{ text-decoration: none;}
+body{ background: #ebebeb; font-size: 14px;}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    color: #303030;
+}
+
+
+/* 导航条 */
+
+nav{ line-height: 60px; border-bottom: 1px solid #000; display: flex; justify-content: space-between; margin: 0 auto; border-bottom: 2px solid #e1e1e1;background: #fff;margin-bottom: 35px;}
+
+.left{ margin-left: 5%;}
+
+.right{ display: flex;justify-content: space-around;padding-right: 20%;}
+
+.right li{padding: 0 20px;}
+
+li a{ color: #505050;}
