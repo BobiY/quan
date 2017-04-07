@@ -1,22 +1,23 @@
 import { combineReducers } from 'redux';
 
 //获取文章列表
-const allList = (state={},action) => {
+const allList = (state={loading:'',data:[]},action) => {
 	switch(action.type){
 		case "LOADList":
-			return Object.assign({},state,{loading:"Loading...",mode:"list"});
+			return Object.assign({},state,{loading:"Loading..."});
 		case "ListOK":
-			return Object.assign({},state,{loading:"Loading...",data:action.date});
+			return Object.assign({},state,{loading:"OK",data:action.date});
 	    default:
-		    return state
+		    let data = state.data.length ? action.data :[];
+		    return state;
 	}
 }
 
 //获取文章的具体信息
-const getContent = (state={},action) =>{
+const getContent = (state={loading:'Loading...',data:{}},action) =>{
 	switch (action.type) {
 		case "LOADContent":
-            return Object.assign({},state,{loading:"Loading...",mode:"content"});
+            return Object.assign({},state,{loading:"Loading..."});
 		case "ContentOK":
 		    return Object.assign({},state,{loading:"ok",date:action.date});
 		default:
@@ -25,7 +26,20 @@ const getContent = (state={},action) =>{
 	}
 }
 
+//判断显示模式
+const modeW = (state='list',action) => {
+	switch (action.type) {
+		case 'MODE':
+		    //console.log(action.bool);
+            state = action.bool ? 'list' : 'content'
+			return state;
+		default:
+		    return state;
+
+	}
+}
+
 
 export default combineReducers({
-	allList,getContent
+	allList,getContent,modeW
 })

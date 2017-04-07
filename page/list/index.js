@@ -5,7 +5,7 @@ import { Provider,connect } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import reducer from './reducer.js';
-import { allList,getContent } from './action.js'
+import { allList,getContent,mode } from './action.js'
 import List from './list.js';
 
 const store = createStore(
@@ -17,14 +17,16 @@ const store = createStore(
 const mapStateToProps = state =>{
 	return {
 		list:state.allList,
-		content:state.getContent
+		content:state.getContent,
+		mode:state.modeW
 	}
 }
 
 const mapDispatchToProps = dispatch =>{
 	return {
 		getList:() => dispatch(allList()),
-		getContents:(id) => dispatch(getContent(id))
+		getContents:(id) => dispatch(getContent(id)),
+		modeM:(bool) => dispatch(mode(bool))
 	}
 }
 
