@@ -70,7 +70,12 @@ obj = {
            {
                 //编译图片文件
            	    test:/\.(png|jpg|gif|svg)$/,
-           	    loader:"url-loader?limit=500&name=./image/[name].[ext]"
+           	    loader:"url-loader?limit=500&name=../image/[name].[ext]"
+           },
+		   {
+                //编译图片文件
+           	    test:/\.(eot|ttf|woff|woffs)$/,
+           	    loader:"file-loader"
            }
 		]
 	},

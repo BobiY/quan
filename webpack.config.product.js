@@ -25,7 +25,8 @@ obj = {
 	//输出文件地址及其名字
 	output:{
 		path:path.resolve(__dirname,"dist/html"),
-        filename:"js/[name].js"
+        filename:"js/[name].js",
+		//publicPath:""
 	},
 	//loader配置
 	module:{
@@ -70,7 +71,7 @@ obj = {
            {
                 //编译图片文件
            	    test:/\.(png|jpg|gif|svg)$/,
-           	    loader:"url-loader?limit=500&name=./image/[name].[ext]"
+           	    loader:"url-loader?limit=500&name=/images/[name].[ext]"
            }
 		]
 	},
@@ -87,7 +88,7 @@ obj = {
 	},
 	plugins:[
 	   //css样式单独打包的插件
-	   new ExtractTextPlugin("./css/[name].css"),
+	   new ExtractTextPlugin("css/[name].css"),
 	   //模块热更新插件
 	   new webpack.HotModuleReplacementPlugin(),
 	   //将jq配置成全局变量

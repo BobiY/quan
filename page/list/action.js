@@ -3,6 +3,7 @@
 export const allList = () => {
     return dispatch => {
 		dispatch({type:"LOADList"});
+        //url:"http://yaoreact.duapp.com/list"
 		return $.ajax({url:"http://localhost:5000/list"}).then( (date) => {
 			dispatch({type:"ListOK",date});
 		} )
@@ -14,6 +15,7 @@ export const getContent = (id) =>{
     //console.log(id)
 	return dispatch => {
 		dispatch({type:"LOADContent"});
+        //http://yaoreact.duapp.com/list/${id}
 		return $.ajax({url:`http://localhost:5000/list/${id}`}).then( (date) => {
 			dispatch({type:"ContentOK",date});
 		} )

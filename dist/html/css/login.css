@@ -77,3 +77,21 @@ input{
 .left .btn:hover{
 	background-color: #4daaff;
 }
+
+.msg{
+	margin-top: 20px;
+    line-height: 30px;
+	color: #B94A48;
+	position: relative;
+	margin-bottom: 10px;
+	background: #F2DEDE;
+	border: 1px solid #EED3D7;
+	box-sizing: border-box;
+	padding-left: 30px;
+}
+
+.msg p{
+	 line-height: 30px;
+	 margin: 10px 0;
+	 cursor: pointer;
+}

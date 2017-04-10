@@ -30,11 +30,9 @@ export default class Article extends Component {
 						<span className = 'time'>{content.date}</span>
 					</div>
 				</div>
-				<div className="featured-media">
-					<a href="#"><img src={content.img} alt="Laravel 5.4 版本正式发布" /></a>
-				</div>
 				<div className="post-content">
-					<p>{content.content}</p>
+				    <div dangerouslySetInnerHTML={{__html: `${content.content}`}}>
+					</div>
 				</div>
 				<div className="post-permalink">
 					{ this.props.mode === 'content' ? ( <a href="#" className="btn btn-default" onClick = {this.backHandle.bind(this)}>{'返回列表页'}</a>) : <a href="#" className="btn btn-default" onClick = {this.clickHandle.bind(this,this.props.id)}>{'阅读全文'}</a> }

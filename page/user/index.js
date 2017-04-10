@@ -6,12 +6,22 @@ import Header from '../../component/user.js';
 class User extends Component {
 	constructor(props) {
 		super();
+		this.state = {
+			title:""
+		}
+		this.setTitle = this.setTitle.bind(this);
 	}
+	setTitle(title){
+			this.setState({
+				title
+			})
+	}
+	//componentShouldUpdate()
 	render(){
 		return (
 			<div>
-                <Header />
-				<Login />
+                <Header setTitle = {this.setTitle}/>
+				<Login title = {this.state.title}/>
 			</div>
 		)
 	}

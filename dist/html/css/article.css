@@ -1,5 +1,10 @@
 /* article */
 
+p{
+	word-wrap:break-word;
+	text-indent: 2em;
+}
+
 .post{
 	padding: 35px;
 	background: #fff;
