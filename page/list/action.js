@@ -22,6 +22,19 @@ export const getContent = (id) =>{
 	}
 }
 
+//删除文章
+export const deletePost = (id) => {
+    return dispatch => {
+        dispatch({type:"BEGIN"});
+        return $.ajax({url:`http://localhost:5000/list/delete/${id}`}).then( (date) => {
+            dispatch({type:"OK",date})
+        } )
+    }
+}
+
+
+
+
 //判断应该显示列表还是内容详情
 
 export const mode = (bool) => {

@@ -26,7 +26,7 @@ obj = {
 	output:{
 		path:path.resolve(__dirname,"dist/html"),
         filename:"js/[name].js",
-		//publicPath:""
+		publicPath:""
 	},
 	//loader配置
 	module:{

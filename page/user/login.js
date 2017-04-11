@@ -11,6 +11,7 @@ export default class Login extends Component{
 		}
 	}
 	tijiao(){
+		//console.log(11111);
 		var _ = this;
 		var name = this.refs.user.value;
 		var pass = this.refs.password.value;
@@ -19,22 +20,30 @@ export default class Login extends Component{
 		let action = (this.props.title === '' || this.props.title === '登录') ? 'login' : 'regirest'
 		//let url = `http://yaoreact.duapp.com/users/${action}`
 		let url = `http://localhost:5000/users/${action}`
-		$.ajax({
-			url,
-			method:"POST",
-			data:{ name,pass },
-			success:function (date) {
-				_.setState({
-                    status:date.success,
-					msg:date.msg
-				})
-				if(action === 'regirest' ){
+		//console.log(url);
+		if( url.indexOf('users') !== -1){
+			$.post({
+				url:url,
+				method:"POST",
+				data:{ name,pass },
+				success:function (date) {
 					_.setState({
-						title:'登录'
+	                    status:date.success,
+						msg:date.msg
 					})
+					if(action === 'regirest' ){
+						_.setState({
+							title:'登录'
+						})
+					} else {
+					    window.location = '/';
+					}
+				},
+				error:function (date) {
+					console.log(date);
 				}
-			}
-		})
+			})
+		}
 	}
 	close(){
 		this.setState({

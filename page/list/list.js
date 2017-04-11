@@ -13,16 +13,23 @@ export default class List extends Component{
     }
 
     articleList(){
-        let data;
+        let data,name
         if( this.props.mode === 'list' ){
-            data =  this.props.list.data;
+            data = this.props.list.date.date;
+            name = this.props.list.date.user;
             if( data.length  ){
+                if(name){
+                    const admin = name.name;
+                }
                 data = data.map( (val,index) => {
-                     return <Article key = {index}
+                     return <Article key = {val._id}
                                      getContent = {this.props.getContents}
-                                     id = { index }
+                                     admin = { "555" }
+                                     id = { val._id }
                                      content = {val}
                                      qieMode = {this.props.modeM}
+                                     deletePost = {this.props.deletePost}
+                                     getList = { this.props.getList }
                             />
                 } )
             }

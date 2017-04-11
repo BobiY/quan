@@ -22,7 +22,7 @@ class Add extends Component {
 			method:"POST",
 			data:{ postName,cateName,content },
 			success:function (date) {
-				console.log(date);
+				//window.location = '/';
 			}
 		})
 	}

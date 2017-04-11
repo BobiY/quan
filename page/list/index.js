@@ -5,7 +5,7 @@ import { Provider,connect } from 'react-redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import reducer from './reducer.js';
-import { allList,getContent,mode } from './action.js'
+import { allList,getContent,mode,deletePost } from './action.js'
 import List from './list.js';
 
 const store = createStore(
@@ -26,7 +26,8 @@ const mapDispatchToProps = dispatch =>{
 	return {
 		getList:() => dispatch(allList()),
 		getContents:(id) => dispatch(getContent(id)),
-		modeM:(bool) => dispatch(mode(bool))
+		modeM:(bool) => dispatch(mode(bool)),
+		deletePost:(id) => dispatch(deletePost(id))
 	}
 }
 
