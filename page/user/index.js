@@ -16,7 +16,6 @@ class User extends Component {
 				title
 			})
 	}
-	//componentShouldUpdate()
 	render(){
 		return (
 			<div>

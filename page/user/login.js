@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import '../../dist/html/css/login.css';
+import '../../css/login.css';
 
 export default class Login extends Component{
 	constructor(props) {
@@ -10,33 +10,54 @@ export default class Login extends Component{
 			title:''
 		}
 	}
+
+	//点击提交表单进行后台验证，这里应该整理为发送action，后期做管理
 	tijiao(){
-		//console.log(11111);
-		var _ = this;
+		const _ = this;
 		var name = this.refs.user.value;
 		var pass = this.refs.password.value;
 		this.refs.user.value = "";
 		this.refs.password.value = "";
-		let action = (this.props.title === '' || this.props.title === '登录') ? 'login' : 'regirest'
-		//let url = `http://yaoreact.duapp.com/users/${action}`
-		let url = `http://localhost:5000/users/${action}`
-		//console.log(url);
+		let action = (this.state.title === '' || this.state.title === '登录') ? 'login' : 'regirest';
+		//let url = `http://119.23.79.243:5000/users/${action}`;
+		let url = `http://localhost:5000/users/${action}`;
+		let str = "",success
 		if( url.indexOf('users') !== -1){
 			$.post({
 				url:url,
 				method:"POST",
 				data:{ name,pass },
 				success:function (date) {
-					_.setState({
-	                    status:date.success,
-						msg:date.msg
-					})
-					if(action === 'regirest' ){
-						_.setState({
-							title:'登录'
-						})
+					if(action !== 'regirest'){
+						if(date.indexOf('user') != -1){
+							//登录失败留在这里继续登陆或者点击标题返回返回首页
+	                         str = "登录失败，请检查用户名和密码";
+	                         success = true;
+							 //登录失败时设置提示信息
+							 _.setState({
+		 	                    status:success,
+		 						msg:str
+							})
+						} else {
+							//成功后跳转的地址
+							/**
+	                           这里返回的数据是一个页面的字符串，如果是在用户页面，说明没有登录成功，就要留在这继续登陆，如果登录成功了就走重定向的地址，跳回列表页
+							*/
+						   window.location = '/';
+						}
 					} else {
-					    window.location = '/';
+						if( date.success ) {
+							_.setState({
+								title:'登录',
+								status:date.success,
+								msg:date.msg
+							})
+						} else {
+							_.setState({
+								status:!date.success,
+								msg:date.msg
+							})
+						}
 					}
 				},
 				error:function (date) {

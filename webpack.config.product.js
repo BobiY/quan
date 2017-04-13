@@ -45,7 +45,7 @@ obj = {
 		        ]
            },
            {
-              //编译css问价
+              //编译css文件
 	           	test:/\.css$/,
                 use:ExtractTextPlugin.extract({
 			          fallback: 'style-loader',
@@ -115,6 +115,7 @@ obj = {
 //自动检测生成编译入口文件
 file.forEach( name => {
 	entry[name] = path.join(url,name,'index.js');
+	//自动生成html页面
 	obj.plugins.push(new HtmlWebpackPlugin({
 		title:name,
         filename: path.join(__dirname,'dist/html/page',name + '.html'),

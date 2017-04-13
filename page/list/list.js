@@ -2,21 +2,23 @@ import React,{ Component } from 'react';
 import Header from '../../component/header.js';
 import Article from '../../component/article.js';
 import Classify from '../../component/classify.js';
-import '../../dist/html/css/list.css';
+import '../../css/list.css';
 import Loading from '../../dist/html/image/loading.gif';
+import Add from '../addPost/addpost'
 export default class List extends Component{
     constructor(props){
         super();
         this.state = {
-            mode:'list'
+            mode:'list',
+            show:""
         }
     }
 
     articleList(){
-        let data,name
+        let data,name = this.props.list.date.user;
         if( this.props.mode === 'list' ){
             data = this.props.list.date.date;
-            name = this.props.list.date.user;
+            console.log(name);
             if( data.length  ){
                 if(name){
                     const admin = name.name;
@@ -24,12 +26,13 @@ export default class List extends Component{
                 data = data.map( (val,index) => {
                      return <Article key = {val._id}
                                      getContent = {this.props.getContents}
-                                     admin = { "555" }
+                                     admin = { name }
                                      id = { val._id }
                                      content = {val}
                                      qieMode = {this.props.modeM}
                                      deletePost = {this.props.deletePost}
                                      getList = { this.props.getList }
+                                     mode = {this.props.mode}
                             />
                 } )
             }
@@ -45,15 +48,20 @@ export default class List extends Component{
                                 content = { data }
                                 qieMode = {this.props.modeM}
                                 mode = {this.props.mode}
+                                editPost = {this.props.edit}
+                                admin = { name }
                        />)
             }
         }
         return data;
     }
     render(){
+        let { user } = this.props.list.date;
         return (
             <div>
-                <Header />
+                <Header user = { user }
+                        getContent = { this.props.getList }
+                />
                 <section>
                    {
                        this.props.list.loading === 'Loading...'  ?
@@ -69,6 +77,17 @@ export default class List extends Component{
                         <Classify />
                     </div>
                 </section>
+                {
+                    this.props.editContent.loading === "OK" ?
+                        <div className = 'editContent'>
+                           <div className = 'warpEdit'>
+                               <Add  date = {this.props.editContent.date}></Add>
+                           </div>
+                           <div className = "mask"></div>
+                        </div>
+                                :
+                     null
+                }
             </div>
         )
     }

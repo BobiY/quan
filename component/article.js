@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import '../dist/html/css/article.css';
+import '../css/article.css';
 import moment from 'moment';
 
 export default class Article extends Component {
@@ -20,8 +20,13 @@ export default class Article extends Component {
 		this.props.deletePost(id);
 		this.props.getList();
 	}
+	editHandle(id){
+		console.log(id);
+		this.props.editPost(id)
+	}
 	render(){
 		let { content } = this.props;
+		const contents = content.content.length > 120 && this.props.mode === 'list' ? `${content.content.substring(0,120)}...` : content.content ;
 		return (
 			<article className = 'post'>
 				<div className = 'post-head'>
@@ -34,14 +39,17 @@ export default class Article extends Component {
 					</div>
 				</div>
 				<div className="post-content">
-				    <div dangerouslySetInnerHTML={{__html: `${content.content}`}}>
+				    <div dangerouslySetInnerHTML={{__html: `${contents}`}}>
 					</div>
 				</div>
 				<div className="post-permalink">
 					{ this.props.mode === 'content' ? ( <a href="#" className="btn btn-default" onClick = {this.backHandle.bind(this)}>{'返回列表页'}</a>) : <a href="#" className="btn btn-default" onClick = {this.clickHandle.bind(this,this.props.id)}>{'阅读全文'}</a>
 				    }
 					{
-						this.props.admin ? <a href="javascript:;" style = {{float:"right"}} onClick = {this.removeHandle.bind(this,this.props.id)}>{'删除此文章'}</a> : null
+						this.props.mode === 'list' && this.props.admin ? <a href="javascript:;" style = {{float:"right"}} onClick = {this.removeHandle.bind(this,this.props.id)}>{'删除此文章'}</a> : null
+					}
+					{
+						this.props.mode === 'content' && this.props.admin ? <a href='javascript:;' style = {{float:"right"}} onClick = {this.editHandle.bind(this,content._id)}>{'编辑此文章'}</a> : null
 					}
 				</div>
 			</article>

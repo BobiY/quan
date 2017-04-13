@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
 
-//获取文章列表
+
+/*===========================  reducer  =================================== */
+
+/*===========================  获取文章列表  =================================== */
+
 const allList = (state={loading:'',date:{user:{},date:[]}},action) => {
 	switch(action.type){
 		case "LOADList":
@@ -13,7 +17,9 @@ const allList = (state={loading:'',date:{user:{},date:[]}},action) => {
 	}
 }
 
-//获取文章的具体信息
+
+/*===========================  获取文章的具体信息  =================================== */
+
 const getContent = (state={loading:'Loading...',data:{}},action) =>{
 	switch (action.type) {
 		case "LOADContent":
@@ -26,7 +32,8 @@ const getContent = (state={loading:'Loading...',data:{}},action) =>{
 	}
 }
 
-//判断显示模式
+/*===========================  判断显示模式  =================================== */
+
 const modeW = (state='list',action) => {
 	switch (action.type) {
 		case 'MODE':
@@ -38,6 +45,10 @@ const modeW = (state='list',action) => {
 
 	}
 }
+
+
+
+/*===========================  删除文章  =================================== */
 
 const deletePostOne = (state={loading:"begin",date:""},action) => {
 	switch (action.type) {
@@ -51,8 +62,24 @@ const deletePostOne = (state={loading:"begin",date:""},action) => {
 	}
 }
 
+/*===========================  编辑文章  =================================== */
 
+const editPostOne = (state={loading:"go",date:""},action) => {
+	switch (action.type) {
+		case 'GO':
+           return Object.assign({},state,{loading:"go",date:{}});
+	   case 'EDIT':
+          return Object.assign({},state,{loading:"OK",date:action.date});
+		default:
+		    return state;
+
+	}
+}
+
+
+
+/*===========================  将reducer暴露出去，构建state树  =================================== */
 
 export default combineReducers({
-	allList,getContent,modeW,deletePostOne
+	allList,getContent,modeW,deletePostOne,editPostOne
 })

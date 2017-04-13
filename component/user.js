@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import '../dist/html/css/userH.css';
+import '../css/userH.css';
 import Img from '../dist/html/image/logo.jpg';
 export default class UserH extends Component {
 	constructor(props) {
@@ -15,7 +15,7 @@ export default class UserH extends Component {
 			<div className = 'header'>
 				<nav className = 'continer'>
                     <div className = 'title'>
-                        <h1>{'React-Blog'}</h1>
+                        <h1><a href = '/' title = '返回首页'>{'React-Blog'}</a></h1>
 					</div>
 					<div className = 'img'>
                         <img src= {Img}/>

@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import '../dist/html/css/classify.css';
+import '../css/classify.css';
 
 export default class Classify extends Component {
 	constructor(props) {
