@@ -37,11 +37,16 @@ const localUrl = {
 export const allList = (cate) => {
     return dispatch => {
 		dispatch({type:"LOADList"});
-        //url:"http://yaoreact.duapp.com/list"
-        console.log(cate);
+        let url = '';
         //let url = cate ? `http://119.23.79.243:5000/list/cate/${cate}`:'http://119.23.79.243:5000/list';
-        let url = cate ? `${localUrl.allList}/cate/${cate}`:localUrl.allList;
-        console.log(url);
+        console.log(typeof cate);
+        if( typeof cate == 'string') {
+            url = `${localUrl.allList}/cate/${cate}`;
+        } else if (typeof cate =='number'){
+            url = `${localUrl.allList}/page/${cate}`;
+        } else {
+            url = localUrl.allList;
+        }
 		return $.ajax({url}).then( (date) => {
 			dispatch({type:"ListOK",date});
 		} )

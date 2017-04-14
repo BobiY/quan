@@ -20,7 +20,7 @@ export default class Login extends Component{
 		this.refs.password.value = "";
 		let action = (this.state.title === '' || this.state.title === '登录') ? 'login' : 'regirest';
 		//let url = `http://119.23.79.243:5000/users/${action}`;
-		let url = `http://localhost:5000/users/${action}`;
+		let url = `http://loaclhost:5000/users/${action}`;
 		let str = "",success
 		if( url.indexOf('users') !== -1){
 			$.post({

@@ -1,3 +1,7 @@
+/**
+   右侧连接组件
+*/
+
 import React,{ Component } from 'react';
 import '../css/classify.css';
 

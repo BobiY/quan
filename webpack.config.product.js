@@ -89,14 +89,8 @@ obj = {
 	plugins:[
 	   //css样式单独打包的插件
 	   new ExtractTextPlugin("css/[name].css"),
-	   //模块热更新插件
-	   new webpack.HotModuleReplacementPlugin(),
-	   //将jq配置成全局变量
-	   new webpack.ProvidePlugin({
-				$: "jquery",
-				jQuery: "jquery",
-				"window.jQuery": "jquery"
-			}),
+       //打包公共js
+	   new webpack.optimize.CommonsChunkPlugin('vendor'),
 	   //postcss配置
 	   new webpack.LoaderOptionsPlugin({
 			options: {
@@ -116,13 +110,13 @@ obj = {
 file.forEach( name => {
 	entry[name] = path.join(url,name,'index.js');
 	//自动生成html页面
-	obj.plugins.push(new HtmlWebpackPlugin({
-		title:name,
-        filename: path.join(__dirname,'dist/html/page',name + '.html'),
-        template: path.join(__dirname,'index.html'),
-        chunks:[name],
-		inject: 'body',
-    }))
+	// obj.plugins.push(new HtmlWebpackPlugin({
+	// 	title:name,
+    //     filename: path.join(__dirname,'dist/html/page',name + '.html'),
+    //     template: path.join(__dirname,'index.html'),
+    //     chunks:[name],
+	// 	inject: 'body',
+    // }))
 } );
-
+obj.entry['vendor'] = ['react'];
 module.exports = obj

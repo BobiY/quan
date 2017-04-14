@@ -1,3 +1,7 @@
+/**
+   用户头部组件
+*/
+
 import React,{ Component } from 'react';
 import '../css/userH.css';
 import Img from '../dist/html/image/logo.jpg';

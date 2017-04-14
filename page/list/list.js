@@ -4,7 +4,8 @@ import Article from '../../component/article.js';
 import Classify from '../../component/classify.js';
 import '../../css/list.css';
 import Loading from '../../dist/html/image/loading.gif';
-import Add from '../addPost/addpost'
+import Add from '../addPost/addpost';
+import Page from '../../component/page.js';
 export default class List extends Component{
     constructor(props){
         super();
@@ -13,7 +14,7 @@ export default class List extends Component{
             show:""
         }
     }
-
+    /*================= 文章渲染 ======================*/
     articleList(){
         let data,name = this.props.list.date.user;
         if( this.props.mode === 'list' ){
@@ -56,7 +57,8 @@ export default class List extends Component{
         return data;
     }
     render(){
-        let { user } = this.props.list.date;
+        let { user,totle } = this.props.list.date;
+        const totlePage = Math.ceil(totle/5);
         return (
             <div>
                 <Header user = { user }
@@ -88,6 +90,9 @@ export default class List extends Component{
                                 :
                      null
                 }
+               {
+                   totlePage > 1 ? <Page totle = {totlePage} qiePage = {this.props.getList}></Page> :null
+               }
             </div>
         )
     }

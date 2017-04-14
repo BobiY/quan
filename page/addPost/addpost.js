@@ -1,11 +1,5 @@
 import React,{ Component } from 'react';
 import { render } from 'react-dom';
-//富文本编辑器依赖文件
-import Simditor from 'simditor';
-import '../../node_modules/simditor/styles/simditor.css';
-//页面样式
-import '../../css/addPost.css';
-
 //添加文章组件
 export default class Add extends Component {
 	constructor(props) {

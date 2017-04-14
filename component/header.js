@@ -1,3 +1,7 @@
+/**
+   列表页头部组件
+*/
+
 import React,{ Component } from 'react';
 import '../css/header.css';
 

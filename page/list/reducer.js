@@ -1,16 +1,29 @@
-import { combineReducers } from 'redux';
+/**
+  Object对象的新方法在IE中不兼容 , Object.assign 在ie11 中不支持 可使用 Object.keys代替
+*/
 
+/**
+   自定义Object.assign 方法
+*/
+
+// const _assign = ( obj1,obj2 ) => {
+// 	let arrKeys = [];
+//
+// }
+
+
+import { combineReducers } from 'redux';
 
 /*===========================  reducer  =================================== */
 
 /*===========================  获取文章列表  =================================== */
 
-const allList = (state={loading:'',date:{user:{},date:[]}},action) => {
+const allList = (state={loading:'',date:{user:{},date:[],totle:0}},action) => {
 	switch(action.type){
 		case "LOADList":
 			return Object.assign({},state,{loading:"Loading..."});
 		case "ListOK":
-			return Object.assign({},state,{loading:"OK",date:{date:action.date.posts,user:action.date.user}});
+			return Object.assign({},state,{loading:"OK",date:{date:action.date.posts,user:action.date.user,totle:action.date.totle}});
 	    default:
 		    let data = state.date.date.length ? action.date :[];
 		    return state;

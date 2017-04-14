@@ -119,13 +119,13 @@ obj = {
 //自动检测生成编译入口文件
 file.forEach( name => {
 	entry[name] = path.join(url,name,'index.js');
-	obj.plugins.push(new HtmlWebpackPlugin({
-		title:name,
-        filename: path.join(__dirname,'dist/html/page',name + '.html'),
-        template: path.join(__dirname,'index.html'),
-        chunks:[name],
-		inject: 'body',
-    }))
+	// obj.plugins.push(new HtmlWebpackPlugin({
+	// 	title:name,
+    //     filename: path.join(__dirname,'dist/html/page',name + '.html'),
+    //     template: path.join(__dirname,'index.html'),
+    //     chunks:[name],
+	// 	inject: 'body',
+    // }))
 } );
 
 module.exports = obj

@@ -7,11 +7,14 @@ import logger from 'redux-logger';
 import reducer from './reducer.js';
 import { allList,getContent,mode,deletePost,editPost } from './action.js'
 import List from './list.js';
+
+/*========================== 创建store ===================================*/
 const store = createStore(
 	reducer,
 	applyMiddleware( thunk,logger )
 );
 
+/*=========================== 将state转换成props ===================================*/
 
 const mapStateToProps = state =>{
 	return {
@@ -21,6 +24,8 @@ const mapStateToProps = state =>{
 		editContent:state.editPostOne
 	}
 }
+
+/*=========================== 将action转换成props ===================================*/
 
 const mapDispatchToProps = dispatch =>{
 	return {
@@ -33,9 +38,11 @@ const mapDispatchToProps = dispatch =>{
 }
 
 
-
+/*=========================== 组件连接redux ===================================*/
 
 const Lists = connect(mapStateToProps,mapDispatchToProps)(List)
+
+/*=========================== 渲染组件 ===================================*/
 
 render(
 	<Provider store = { store }>

@@ -1,0 +1,34 @@
+ul,li{list-style: none;}
+
+.page{
+	width: 230px;
+	height: 36px;
+	margin: 40px auto;
+}
+
+.page ul{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.page ul li{
+	width: 36px;
+	height: 36px;
+	line-height: 36px;
+	box-sizing: border-box;
+	text-align: center;
+	cursor: pointer;
+	background: #f4645f;
+	color:#fff;
+	border-radius: 2px;
+}
+
+.page .center{
+	width:50%;
+}
+
+.backGry{
+	background-color: #666 !important;
+}
